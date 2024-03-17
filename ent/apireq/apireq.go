@@ -21,6 +21,16 @@ const (
 	FieldReqHeaders = "req_headers"
 	// FieldReqMetadata holds the string denoting the req_metadata field in the database.
 	FieldReqMetadata = "req_metadata"
+	// FieldRespTime holds the string denoting the resp_time field in the database.
+	FieldRespTime = "resp_time"
+	// FieldRespStatus holds the string denoting the resp_status field in the database.
+	FieldRespStatus = "resp_status"
+	// FieldRespBody holds the string denoting the resp_body field in the database.
+	FieldRespBody = "resp_body"
+	// FieldRespHeaders holds the string denoting the resp_headers field in the database.
+	FieldRespHeaders = "resp_headers"
+	// FieldRespMetadata holds the string denoting the resp_metadata field in the database.
+	FieldRespMetadata = "resp_metadata"
 	// FieldCreatedAt holds the string denoting the created_at field in the database.
 	FieldCreatedAt = "created_at"
 	// FieldUpdatedAt holds the string denoting the updated_at field in the database.
@@ -39,6 +49,11 @@ var Columns = []string{
 	FieldReqBody,
 	FieldReqHeaders,
 	FieldReqMetadata,
+	FieldRespTime,
+	FieldRespStatus,
+	FieldRespBody,
+	FieldRespHeaders,
+	FieldRespMetadata,
 	FieldCreatedAt,
 	FieldUpdatedAt,
 	FieldDeletedAt,
@@ -65,6 +80,46 @@ func ByID(opts ...sql.OrderTermOption) OrderOption {
 // ByReqTime orders the results by the req_time field.
 func ByReqTime(opts ...sql.OrderTermOption) OrderOption {
 	return sql.OrderByField(FieldReqTime, opts...).ToFunc()
+}
+
+// ByReqParam orders the results by the req_param field.
+func ByReqParam(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldReqParam, opts...).ToFunc()
+}
+
+// ByReqBody orders the results by the req_body field.
+func ByReqBody(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldReqBody, opts...).ToFunc()
+}
+
+// ByReqHeaders orders the results by the req_headers field.
+func ByReqHeaders(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldReqHeaders, opts...).ToFunc()
+}
+
+// ByReqMetadata orders the results by the req_metadata field.
+func ByReqMetadata(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldReqMetadata, opts...).ToFunc()
+}
+
+// ByRespTime orders the results by the resp_time field.
+func ByRespTime(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldRespTime, opts...).ToFunc()
+}
+
+// ByRespStatus orders the results by the resp_status field.
+func ByRespStatus(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldRespStatus, opts...).ToFunc()
+}
+
+// ByRespBody orders the results by the resp_body field.
+func ByRespBody(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldRespBody, opts...).ToFunc()
+}
+
+// ByRespHeaders orders the results by the resp_headers field.
+func ByRespHeaders(opts ...sql.OrderTermOption) OrderOption {
+	return sql.OrderByField(FieldRespHeaders, opts...).ToFunc()
 }
 
 // ByCreatedAt orders the results by the created_at field.

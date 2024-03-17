@@ -43,26 +43,175 @@ func (au *ApireqUpdate) SetNillableReqTime(t *time.Time) *ApireqUpdate {
 }
 
 // SetReqParam sets the "req_param" field.
-func (au *ApireqUpdate) SetReqParam(m map[string]interface{}) *ApireqUpdate {
-	au.mutation.SetReqParam(m)
+func (au *ApireqUpdate) SetReqParam(s string) *ApireqUpdate {
+	au.mutation.SetReqParam(s)
+	return au
+}
+
+// SetNillableReqParam sets the "req_param" field if the given value is not nil.
+func (au *ApireqUpdate) SetNillableReqParam(s *string) *ApireqUpdate {
+	if s != nil {
+		au.SetReqParam(*s)
+	}
+	return au
+}
+
+// ClearReqParam clears the value of the "req_param" field.
+func (au *ApireqUpdate) ClearReqParam() *ApireqUpdate {
+	au.mutation.ClearReqParam()
 	return au
 }
 
 // SetReqBody sets the "req_body" field.
-func (au *ApireqUpdate) SetReqBody(m map[string]interface{}) *ApireqUpdate {
-	au.mutation.SetReqBody(m)
+func (au *ApireqUpdate) SetReqBody(s string) *ApireqUpdate {
+	au.mutation.SetReqBody(s)
+	return au
+}
+
+// SetNillableReqBody sets the "req_body" field if the given value is not nil.
+func (au *ApireqUpdate) SetNillableReqBody(s *string) *ApireqUpdate {
+	if s != nil {
+		au.SetReqBody(*s)
+	}
+	return au
+}
+
+// ClearReqBody clears the value of the "req_body" field.
+func (au *ApireqUpdate) ClearReqBody() *ApireqUpdate {
+	au.mutation.ClearReqBody()
 	return au
 }
 
 // SetReqHeaders sets the "req_headers" field.
-func (au *ApireqUpdate) SetReqHeaders(m map[string]interface{}) *ApireqUpdate {
-	au.mutation.SetReqHeaders(m)
+func (au *ApireqUpdate) SetReqHeaders(s string) *ApireqUpdate {
+	au.mutation.SetReqHeaders(s)
+	return au
+}
+
+// SetNillableReqHeaders sets the "req_headers" field if the given value is not nil.
+func (au *ApireqUpdate) SetNillableReqHeaders(s *string) *ApireqUpdate {
+	if s != nil {
+		au.SetReqHeaders(*s)
+	}
+	return au
+}
+
+// ClearReqHeaders clears the value of the "req_headers" field.
+func (au *ApireqUpdate) ClearReqHeaders() *ApireqUpdate {
+	au.mutation.ClearReqHeaders()
 	return au
 }
 
 // SetReqMetadata sets the "req_metadata" field.
-func (au *ApireqUpdate) SetReqMetadata(m map[string]interface{}) *ApireqUpdate {
-	au.mutation.SetReqMetadata(m)
+func (au *ApireqUpdate) SetReqMetadata(s string) *ApireqUpdate {
+	au.mutation.SetReqMetadata(s)
+	return au
+}
+
+// SetNillableReqMetadata sets the "req_metadata" field if the given value is not nil.
+func (au *ApireqUpdate) SetNillableReqMetadata(s *string) *ApireqUpdate {
+	if s != nil {
+		au.SetReqMetadata(*s)
+	}
+	return au
+}
+
+// ClearReqMetadata clears the value of the "req_metadata" field.
+func (au *ApireqUpdate) ClearReqMetadata() *ApireqUpdate {
+	au.mutation.ClearReqMetadata()
+	return au
+}
+
+// SetRespTime sets the "resp_time" field.
+func (au *ApireqUpdate) SetRespTime(t time.Time) *ApireqUpdate {
+	au.mutation.SetRespTime(t)
+	return au
+}
+
+// SetNillableRespTime sets the "resp_time" field if the given value is not nil.
+func (au *ApireqUpdate) SetNillableRespTime(t *time.Time) *ApireqUpdate {
+	if t != nil {
+		au.SetRespTime(*t)
+	}
+	return au
+}
+
+// SetRespStatus sets the "resp_status" field.
+func (au *ApireqUpdate) SetRespStatus(i int) *ApireqUpdate {
+	au.mutation.ResetRespStatus()
+	au.mutation.SetRespStatus(i)
+	return au
+}
+
+// SetNillableRespStatus sets the "resp_status" field if the given value is not nil.
+func (au *ApireqUpdate) SetNillableRespStatus(i *int) *ApireqUpdate {
+	if i != nil {
+		au.SetRespStatus(*i)
+	}
+	return au
+}
+
+// AddRespStatus adds i to the "resp_status" field.
+func (au *ApireqUpdate) AddRespStatus(i int) *ApireqUpdate {
+	au.mutation.AddRespStatus(i)
+	return au
+}
+
+// ClearRespStatus clears the value of the "resp_status" field.
+func (au *ApireqUpdate) ClearRespStatus() *ApireqUpdate {
+	au.mutation.ClearRespStatus()
+	return au
+}
+
+// SetRespBody sets the "resp_body" field.
+func (au *ApireqUpdate) SetRespBody(s string) *ApireqUpdate {
+	au.mutation.SetRespBody(s)
+	return au
+}
+
+// SetNillableRespBody sets the "resp_body" field if the given value is not nil.
+func (au *ApireqUpdate) SetNillableRespBody(s *string) *ApireqUpdate {
+	if s != nil {
+		au.SetRespBody(*s)
+	}
+	return au
+}
+
+// ClearRespBody clears the value of the "resp_body" field.
+func (au *ApireqUpdate) ClearRespBody() *ApireqUpdate {
+	au.mutation.ClearRespBody()
+	return au
+}
+
+// SetRespHeaders sets the "resp_headers" field.
+func (au *ApireqUpdate) SetRespHeaders(s string) *ApireqUpdate {
+	au.mutation.SetRespHeaders(s)
+	return au
+}
+
+// SetNillableRespHeaders sets the "resp_headers" field if the given value is not nil.
+func (au *ApireqUpdate) SetNillableRespHeaders(s *string) *ApireqUpdate {
+	if s != nil {
+		au.SetRespHeaders(*s)
+	}
+	return au
+}
+
+// ClearRespHeaders clears the value of the "resp_headers" field.
+func (au *ApireqUpdate) ClearRespHeaders() *ApireqUpdate {
+	au.mutation.ClearRespHeaders()
+	return au
+}
+
+// SetRespMetadata sets the "resp_metadata" field.
+func (au *ApireqUpdate) SetRespMetadata(m map[string]interface{}) *ApireqUpdate {
+	au.mutation.SetRespMetadata(m)
+	return au
+}
+
+// ClearRespMetadata clears the value of the "resp_metadata" field.
+func (au *ApireqUpdate) ClearRespMetadata() *ApireqUpdate {
+	au.mutation.ClearRespMetadata()
 	return au
 }
 
@@ -159,16 +308,58 @@ func (au *ApireqUpdate) sqlSave(ctx context.Context) (n int, err error) {
 		_spec.SetField(apireq.FieldReqTime, field.TypeTime, value)
 	}
 	if value, ok := au.mutation.ReqParam(); ok {
-		_spec.SetField(apireq.FieldReqParam, field.TypeJSON, value)
+		_spec.SetField(apireq.FieldReqParam, field.TypeString, value)
+	}
+	if au.mutation.ReqParamCleared() {
+		_spec.ClearField(apireq.FieldReqParam, field.TypeString)
 	}
 	if value, ok := au.mutation.ReqBody(); ok {
-		_spec.SetField(apireq.FieldReqBody, field.TypeJSON, value)
+		_spec.SetField(apireq.FieldReqBody, field.TypeString, value)
+	}
+	if au.mutation.ReqBodyCleared() {
+		_spec.ClearField(apireq.FieldReqBody, field.TypeString)
 	}
 	if value, ok := au.mutation.ReqHeaders(); ok {
-		_spec.SetField(apireq.FieldReqHeaders, field.TypeJSON, value)
+		_spec.SetField(apireq.FieldReqHeaders, field.TypeString, value)
+	}
+	if au.mutation.ReqHeadersCleared() {
+		_spec.ClearField(apireq.FieldReqHeaders, field.TypeString)
 	}
 	if value, ok := au.mutation.ReqMetadata(); ok {
-		_spec.SetField(apireq.FieldReqMetadata, field.TypeJSON, value)
+		_spec.SetField(apireq.FieldReqMetadata, field.TypeString, value)
+	}
+	if au.mutation.ReqMetadataCleared() {
+		_spec.ClearField(apireq.FieldReqMetadata, field.TypeString)
+	}
+	if value, ok := au.mutation.RespTime(); ok {
+		_spec.SetField(apireq.FieldRespTime, field.TypeTime, value)
+	}
+	if value, ok := au.mutation.RespStatus(); ok {
+		_spec.SetField(apireq.FieldRespStatus, field.TypeInt, value)
+	}
+	if value, ok := au.mutation.AddedRespStatus(); ok {
+		_spec.AddField(apireq.FieldRespStatus, field.TypeInt, value)
+	}
+	if au.mutation.RespStatusCleared() {
+		_spec.ClearField(apireq.FieldRespStatus, field.TypeInt)
+	}
+	if value, ok := au.mutation.RespBody(); ok {
+		_spec.SetField(apireq.FieldRespBody, field.TypeString, value)
+	}
+	if au.mutation.RespBodyCleared() {
+		_spec.ClearField(apireq.FieldRespBody, field.TypeString)
+	}
+	if value, ok := au.mutation.RespHeaders(); ok {
+		_spec.SetField(apireq.FieldRespHeaders, field.TypeString, value)
+	}
+	if au.mutation.RespHeadersCleared() {
+		_spec.ClearField(apireq.FieldRespHeaders, field.TypeString)
+	}
+	if value, ok := au.mutation.RespMetadata(); ok {
+		_spec.SetField(apireq.FieldRespMetadata, field.TypeJSON, value)
+	}
+	if au.mutation.RespMetadataCleared() {
+		_spec.ClearField(apireq.FieldRespMetadata, field.TypeJSON)
 	}
 	if value, ok := au.mutation.CreatedAt(); ok {
 		_spec.SetField(apireq.FieldCreatedAt, field.TypeTime, value)
@@ -217,26 +408,175 @@ func (auo *ApireqUpdateOne) SetNillableReqTime(t *time.Time) *ApireqUpdateOne {
 }
 
 // SetReqParam sets the "req_param" field.
-func (auo *ApireqUpdateOne) SetReqParam(m map[string]interface{}) *ApireqUpdateOne {
-	auo.mutation.SetReqParam(m)
+func (auo *ApireqUpdateOne) SetReqParam(s string) *ApireqUpdateOne {
+	auo.mutation.SetReqParam(s)
+	return auo
+}
+
+// SetNillableReqParam sets the "req_param" field if the given value is not nil.
+func (auo *ApireqUpdateOne) SetNillableReqParam(s *string) *ApireqUpdateOne {
+	if s != nil {
+		auo.SetReqParam(*s)
+	}
+	return auo
+}
+
+// ClearReqParam clears the value of the "req_param" field.
+func (auo *ApireqUpdateOne) ClearReqParam() *ApireqUpdateOne {
+	auo.mutation.ClearReqParam()
 	return auo
 }
 
 // SetReqBody sets the "req_body" field.
-func (auo *ApireqUpdateOne) SetReqBody(m map[string]interface{}) *ApireqUpdateOne {
-	auo.mutation.SetReqBody(m)
+func (auo *ApireqUpdateOne) SetReqBody(s string) *ApireqUpdateOne {
+	auo.mutation.SetReqBody(s)
+	return auo
+}
+
+// SetNillableReqBody sets the "req_body" field if the given value is not nil.
+func (auo *ApireqUpdateOne) SetNillableReqBody(s *string) *ApireqUpdateOne {
+	if s != nil {
+		auo.SetReqBody(*s)
+	}
+	return auo
+}
+
+// ClearReqBody clears the value of the "req_body" field.
+func (auo *ApireqUpdateOne) ClearReqBody() *ApireqUpdateOne {
+	auo.mutation.ClearReqBody()
 	return auo
 }
 
 // SetReqHeaders sets the "req_headers" field.
-func (auo *ApireqUpdateOne) SetReqHeaders(m map[string]interface{}) *ApireqUpdateOne {
-	auo.mutation.SetReqHeaders(m)
+func (auo *ApireqUpdateOne) SetReqHeaders(s string) *ApireqUpdateOne {
+	auo.mutation.SetReqHeaders(s)
+	return auo
+}
+
+// SetNillableReqHeaders sets the "req_headers" field if the given value is not nil.
+func (auo *ApireqUpdateOne) SetNillableReqHeaders(s *string) *ApireqUpdateOne {
+	if s != nil {
+		auo.SetReqHeaders(*s)
+	}
+	return auo
+}
+
+// ClearReqHeaders clears the value of the "req_headers" field.
+func (auo *ApireqUpdateOne) ClearReqHeaders() *ApireqUpdateOne {
+	auo.mutation.ClearReqHeaders()
 	return auo
 }
 
 // SetReqMetadata sets the "req_metadata" field.
-func (auo *ApireqUpdateOne) SetReqMetadata(m map[string]interface{}) *ApireqUpdateOne {
-	auo.mutation.SetReqMetadata(m)
+func (auo *ApireqUpdateOne) SetReqMetadata(s string) *ApireqUpdateOne {
+	auo.mutation.SetReqMetadata(s)
+	return auo
+}
+
+// SetNillableReqMetadata sets the "req_metadata" field if the given value is not nil.
+func (auo *ApireqUpdateOne) SetNillableReqMetadata(s *string) *ApireqUpdateOne {
+	if s != nil {
+		auo.SetReqMetadata(*s)
+	}
+	return auo
+}
+
+// ClearReqMetadata clears the value of the "req_metadata" field.
+func (auo *ApireqUpdateOne) ClearReqMetadata() *ApireqUpdateOne {
+	auo.mutation.ClearReqMetadata()
+	return auo
+}
+
+// SetRespTime sets the "resp_time" field.
+func (auo *ApireqUpdateOne) SetRespTime(t time.Time) *ApireqUpdateOne {
+	auo.mutation.SetRespTime(t)
+	return auo
+}
+
+// SetNillableRespTime sets the "resp_time" field if the given value is not nil.
+func (auo *ApireqUpdateOne) SetNillableRespTime(t *time.Time) *ApireqUpdateOne {
+	if t != nil {
+		auo.SetRespTime(*t)
+	}
+	return auo
+}
+
+// SetRespStatus sets the "resp_status" field.
+func (auo *ApireqUpdateOne) SetRespStatus(i int) *ApireqUpdateOne {
+	auo.mutation.ResetRespStatus()
+	auo.mutation.SetRespStatus(i)
+	return auo
+}
+
+// SetNillableRespStatus sets the "resp_status" field if the given value is not nil.
+func (auo *ApireqUpdateOne) SetNillableRespStatus(i *int) *ApireqUpdateOne {
+	if i != nil {
+		auo.SetRespStatus(*i)
+	}
+	return auo
+}
+
+// AddRespStatus adds i to the "resp_status" field.
+func (auo *ApireqUpdateOne) AddRespStatus(i int) *ApireqUpdateOne {
+	auo.mutation.AddRespStatus(i)
+	return auo
+}
+
+// ClearRespStatus clears the value of the "resp_status" field.
+func (auo *ApireqUpdateOne) ClearRespStatus() *ApireqUpdateOne {
+	auo.mutation.ClearRespStatus()
+	return auo
+}
+
+// SetRespBody sets the "resp_body" field.
+func (auo *ApireqUpdateOne) SetRespBody(s string) *ApireqUpdateOne {
+	auo.mutation.SetRespBody(s)
+	return auo
+}
+
+// SetNillableRespBody sets the "resp_body" field if the given value is not nil.
+func (auo *ApireqUpdateOne) SetNillableRespBody(s *string) *ApireqUpdateOne {
+	if s != nil {
+		auo.SetRespBody(*s)
+	}
+	return auo
+}
+
+// ClearRespBody clears the value of the "resp_body" field.
+func (auo *ApireqUpdateOne) ClearRespBody() *ApireqUpdateOne {
+	auo.mutation.ClearRespBody()
+	return auo
+}
+
+// SetRespHeaders sets the "resp_headers" field.
+func (auo *ApireqUpdateOne) SetRespHeaders(s string) *ApireqUpdateOne {
+	auo.mutation.SetRespHeaders(s)
+	return auo
+}
+
+// SetNillableRespHeaders sets the "resp_headers" field if the given value is not nil.
+func (auo *ApireqUpdateOne) SetNillableRespHeaders(s *string) *ApireqUpdateOne {
+	if s != nil {
+		auo.SetRespHeaders(*s)
+	}
+	return auo
+}
+
+// ClearRespHeaders clears the value of the "resp_headers" field.
+func (auo *ApireqUpdateOne) ClearRespHeaders() *ApireqUpdateOne {
+	auo.mutation.ClearRespHeaders()
+	return auo
+}
+
+// SetRespMetadata sets the "resp_metadata" field.
+func (auo *ApireqUpdateOne) SetRespMetadata(m map[string]interface{}) *ApireqUpdateOne {
+	auo.mutation.SetRespMetadata(m)
+	return auo
+}
+
+// ClearRespMetadata clears the value of the "resp_metadata" field.
+func (auo *ApireqUpdateOne) ClearRespMetadata() *ApireqUpdateOne {
+	auo.mutation.ClearRespMetadata()
 	return auo
 }
 
@@ -363,16 +703,58 @@ func (auo *ApireqUpdateOne) sqlSave(ctx context.Context) (_node *Apireq, err err
 		_spec.SetField(apireq.FieldReqTime, field.TypeTime, value)
 	}
 	if value, ok := auo.mutation.ReqParam(); ok {
-		_spec.SetField(apireq.FieldReqParam, field.TypeJSON, value)
+		_spec.SetField(apireq.FieldReqParam, field.TypeString, value)
+	}
+	if auo.mutation.ReqParamCleared() {
+		_spec.ClearField(apireq.FieldReqParam, field.TypeString)
 	}
 	if value, ok := auo.mutation.ReqBody(); ok {
-		_spec.SetField(apireq.FieldReqBody, field.TypeJSON, value)
+		_spec.SetField(apireq.FieldReqBody, field.TypeString, value)
+	}
+	if auo.mutation.ReqBodyCleared() {
+		_spec.ClearField(apireq.FieldReqBody, field.TypeString)
 	}
 	if value, ok := auo.mutation.ReqHeaders(); ok {
-		_spec.SetField(apireq.FieldReqHeaders, field.TypeJSON, value)
+		_spec.SetField(apireq.FieldReqHeaders, field.TypeString, value)
+	}
+	if auo.mutation.ReqHeadersCleared() {
+		_spec.ClearField(apireq.FieldReqHeaders, field.TypeString)
 	}
 	if value, ok := auo.mutation.ReqMetadata(); ok {
-		_spec.SetField(apireq.FieldReqMetadata, field.TypeJSON, value)
+		_spec.SetField(apireq.FieldReqMetadata, field.TypeString, value)
+	}
+	if auo.mutation.ReqMetadataCleared() {
+		_spec.ClearField(apireq.FieldReqMetadata, field.TypeString)
+	}
+	if value, ok := auo.mutation.RespTime(); ok {
+		_spec.SetField(apireq.FieldRespTime, field.TypeTime, value)
+	}
+	if value, ok := auo.mutation.RespStatus(); ok {
+		_spec.SetField(apireq.FieldRespStatus, field.TypeInt, value)
+	}
+	if value, ok := auo.mutation.AddedRespStatus(); ok {
+		_spec.AddField(apireq.FieldRespStatus, field.TypeInt, value)
+	}
+	if auo.mutation.RespStatusCleared() {
+		_spec.ClearField(apireq.FieldRespStatus, field.TypeInt)
+	}
+	if value, ok := auo.mutation.RespBody(); ok {
+		_spec.SetField(apireq.FieldRespBody, field.TypeString, value)
+	}
+	if auo.mutation.RespBodyCleared() {
+		_spec.ClearField(apireq.FieldRespBody, field.TypeString)
+	}
+	if value, ok := auo.mutation.RespHeaders(); ok {
+		_spec.SetField(apireq.FieldRespHeaders, field.TypeString, value)
+	}
+	if auo.mutation.RespHeadersCleared() {
+		_spec.ClearField(apireq.FieldRespHeaders, field.TypeString)
+	}
+	if value, ok := auo.mutation.RespMetadata(); ok {
+		_spec.SetField(apireq.FieldRespMetadata, field.TypeJSON, value)
+	}
+	if auo.mutation.RespMetadataCleared() {
+		_spec.ClearField(apireq.FieldRespMetadata, field.TypeJSON)
 	}
 	if value, ok := auo.mutation.CreatedAt(); ok {
 		_spec.SetField(apireq.FieldCreatedAt, field.TypeTime, value)

@@ -48,21 +48,27 @@ const (
 // ApireqMutation represents an operation that mutates the Apireq nodes in the graph.
 type ApireqMutation struct {
 	config
-	op            Op
-	typ           string
-	id            *int
-	req_time      *time.Time
-	req_param     *map[string]interface{}
-	req_body      *map[string]interface{}
-	req_headers   *map[string]interface{}
-	req_metadata  *map[string]interface{}
-	created_at    *time.Time
-	updated_at    *time.Time
-	deleted_at    *time.Time
-	clearedFields map[string]struct{}
-	done          bool
-	oldValue      func(context.Context) (*Apireq, error)
-	predicates    []predicate.Apireq
+	op             Op
+	typ            string
+	id             *int
+	req_time       *time.Time
+	req_param      *string
+	req_body       *string
+	req_headers    *string
+	req_metadata   *string
+	resp_time      *time.Time
+	resp_status    *int
+	addresp_status *int
+	resp_body      *string
+	resp_headers   *string
+	resp_metadata  *map[string]interface{}
+	created_at     *time.Time
+	updated_at     *time.Time
+	deleted_at     *time.Time
+	clearedFields  map[string]struct{}
+	done           bool
+	oldValue       func(context.Context) (*Apireq, error)
+	predicates     []predicate.Apireq
 }
 
 var _ ent.Mutation = (*ApireqMutation)(nil)
@@ -206,12 +212,12 @@ func (m *ApireqMutation) ResetReqTime() {
 }
 
 // SetReqParam sets the "req_param" field.
-func (m *ApireqMutation) SetReqParam(value map[string]interface{}) {
-	m.req_param = &value
+func (m *ApireqMutation) SetReqParam(s string) {
+	m.req_param = &s
 }
 
 // ReqParam returns the value of the "req_param" field in the mutation.
-func (m *ApireqMutation) ReqParam() (r map[string]interface{}, exists bool) {
+func (m *ApireqMutation) ReqParam() (r string, exists bool) {
 	v := m.req_param
 	if v == nil {
 		return
@@ -222,7 +228,7 @@ func (m *ApireqMutation) ReqParam() (r map[string]interface{}, exists bool) {
 // OldReqParam returns the old "req_param" field's value of the Apireq entity.
 // If the Apireq object wasn't provided to the builder, the object is fetched from the database.
 // An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *ApireqMutation) OldReqParam(ctx context.Context) (v map[string]interface{}, err error) {
+func (m *ApireqMutation) OldReqParam(ctx context.Context) (v string, err error) {
 	if !m.op.Is(OpUpdateOne) {
 		return v, errors.New("OldReqParam is only allowed on UpdateOne operations")
 	}
@@ -236,18 +242,31 @@ func (m *ApireqMutation) OldReqParam(ctx context.Context) (v map[string]interfac
 	return oldValue.ReqParam, nil
 }
 
+// ClearReqParam clears the value of the "req_param" field.
+func (m *ApireqMutation) ClearReqParam() {
+	m.req_param = nil
+	m.clearedFields[apireq.FieldReqParam] = struct{}{}
+}
+
+// ReqParamCleared returns if the "req_param" field was cleared in this mutation.
+func (m *ApireqMutation) ReqParamCleared() bool {
+	_, ok := m.clearedFields[apireq.FieldReqParam]
+	return ok
+}
+
 // ResetReqParam resets all changes to the "req_param" field.
 func (m *ApireqMutation) ResetReqParam() {
 	m.req_param = nil
+	delete(m.clearedFields, apireq.FieldReqParam)
 }
 
 // SetReqBody sets the "req_body" field.
-func (m *ApireqMutation) SetReqBody(value map[string]interface{}) {
-	m.req_body = &value
+func (m *ApireqMutation) SetReqBody(s string) {
+	m.req_body = &s
 }
 
 // ReqBody returns the value of the "req_body" field in the mutation.
-func (m *ApireqMutation) ReqBody() (r map[string]interface{}, exists bool) {
+func (m *ApireqMutation) ReqBody() (r string, exists bool) {
 	v := m.req_body
 	if v == nil {
 		return
@@ -258,7 +277,7 @@ func (m *ApireqMutation) ReqBody() (r map[string]interface{}, exists bool) {
 // OldReqBody returns the old "req_body" field's value of the Apireq entity.
 // If the Apireq object wasn't provided to the builder, the object is fetched from the database.
 // An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *ApireqMutation) OldReqBody(ctx context.Context) (v map[string]interface{}, err error) {
+func (m *ApireqMutation) OldReqBody(ctx context.Context) (v string, err error) {
 	if !m.op.Is(OpUpdateOne) {
 		return v, errors.New("OldReqBody is only allowed on UpdateOne operations")
 	}
@@ -272,18 +291,31 @@ func (m *ApireqMutation) OldReqBody(ctx context.Context) (v map[string]interface
 	return oldValue.ReqBody, nil
 }
 
+// ClearReqBody clears the value of the "req_body" field.
+func (m *ApireqMutation) ClearReqBody() {
+	m.req_body = nil
+	m.clearedFields[apireq.FieldReqBody] = struct{}{}
+}
+
+// ReqBodyCleared returns if the "req_body" field was cleared in this mutation.
+func (m *ApireqMutation) ReqBodyCleared() bool {
+	_, ok := m.clearedFields[apireq.FieldReqBody]
+	return ok
+}
+
 // ResetReqBody resets all changes to the "req_body" field.
 func (m *ApireqMutation) ResetReqBody() {
 	m.req_body = nil
+	delete(m.clearedFields, apireq.FieldReqBody)
 }
 
 // SetReqHeaders sets the "req_headers" field.
-func (m *ApireqMutation) SetReqHeaders(value map[string]interface{}) {
-	m.req_headers = &value
+func (m *ApireqMutation) SetReqHeaders(s string) {
+	m.req_headers = &s
 }
 
 // ReqHeaders returns the value of the "req_headers" field in the mutation.
-func (m *ApireqMutation) ReqHeaders() (r map[string]interface{}, exists bool) {
+func (m *ApireqMutation) ReqHeaders() (r string, exists bool) {
 	v := m.req_headers
 	if v == nil {
 		return
@@ -294,7 +326,7 @@ func (m *ApireqMutation) ReqHeaders() (r map[string]interface{}, exists bool) {
 // OldReqHeaders returns the old "req_headers" field's value of the Apireq entity.
 // If the Apireq object wasn't provided to the builder, the object is fetched from the database.
 // An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *ApireqMutation) OldReqHeaders(ctx context.Context) (v map[string]interface{}, err error) {
+func (m *ApireqMutation) OldReqHeaders(ctx context.Context) (v string, err error) {
 	if !m.op.Is(OpUpdateOne) {
 		return v, errors.New("OldReqHeaders is only allowed on UpdateOne operations")
 	}
@@ -308,18 +340,31 @@ func (m *ApireqMutation) OldReqHeaders(ctx context.Context) (v map[string]interf
 	return oldValue.ReqHeaders, nil
 }
 
+// ClearReqHeaders clears the value of the "req_headers" field.
+func (m *ApireqMutation) ClearReqHeaders() {
+	m.req_headers = nil
+	m.clearedFields[apireq.FieldReqHeaders] = struct{}{}
+}
+
+// ReqHeadersCleared returns if the "req_headers" field was cleared in this mutation.
+func (m *ApireqMutation) ReqHeadersCleared() bool {
+	_, ok := m.clearedFields[apireq.FieldReqHeaders]
+	return ok
+}
+
 // ResetReqHeaders resets all changes to the "req_headers" field.
 func (m *ApireqMutation) ResetReqHeaders() {
 	m.req_headers = nil
+	delete(m.clearedFields, apireq.FieldReqHeaders)
 }
 
 // SetReqMetadata sets the "req_metadata" field.
-func (m *ApireqMutation) SetReqMetadata(value map[string]interface{}) {
-	m.req_metadata = &value
+func (m *ApireqMutation) SetReqMetadata(s string) {
+	m.req_metadata = &s
 }
 
 // ReqMetadata returns the value of the "req_metadata" field in the mutation.
-func (m *ApireqMutation) ReqMetadata() (r map[string]interface{}, exists bool) {
+func (m *ApireqMutation) ReqMetadata() (r string, exists bool) {
 	v := m.req_metadata
 	if v == nil {
 		return
@@ -330,7 +375,7 @@ func (m *ApireqMutation) ReqMetadata() (r map[string]interface{}, exists bool) {
 // OldReqMetadata returns the old "req_metadata" field's value of the Apireq entity.
 // If the Apireq object wasn't provided to the builder, the object is fetched from the database.
 // An error is returned if the mutation operation is not UpdateOne, or the database query fails.
-func (m *ApireqMutation) OldReqMetadata(ctx context.Context) (v map[string]interface{}, err error) {
+func (m *ApireqMutation) OldReqMetadata(ctx context.Context) (v string, err error) {
 	if !m.op.Is(OpUpdateOne) {
 		return v, errors.New("OldReqMetadata is only allowed on UpdateOne operations")
 	}
@@ -344,9 +389,275 @@ func (m *ApireqMutation) OldReqMetadata(ctx context.Context) (v map[string]inter
 	return oldValue.ReqMetadata, nil
 }
 
+// ClearReqMetadata clears the value of the "req_metadata" field.
+func (m *ApireqMutation) ClearReqMetadata() {
+	m.req_metadata = nil
+	m.clearedFields[apireq.FieldReqMetadata] = struct{}{}
+}
+
+// ReqMetadataCleared returns if the "req_metadata" field was cleared in this mutation.
+func (m *ApireqMutation) ReqMetadataCleared() bool {
+	_, ok := m.clearedFields[apireq.FieldReqMetadata]
+	return ok
+}
+
 // ResetReqMetadata resets all changes to the "req_metadata" field.
 func (m *ApireqMutation) ResetReqMetadata() {
 	m.req_metadata = nil
+	delete(m.clearedFields, apireq.FieldReqMetadata)
+}
+
+// SetRespTime sets the "resp_time" field.
+func (m *ApireqMutation) SetRespTime(t time.Time) {
+	m.resp_time = &t
+}
+
+// RespTime returns the value of the "resp_time" field in the mutation.
+func (m *ApireqMutation) RespTime() (r time.Time, exists bool) {
+	v := m.resp_time
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldRespTime returns the old "resp_time" field's value of the Apireq entity.
+// If the Apireq object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *ApireqMutation) OldRespTime(ctx context.Context) (v time.Time, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldRespTime is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldRespTime requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldRespTime: %w", err)
+	}
+	return oldValue.RespTime, nil
+}
+
+// ResetRespTime resets all changes to the "resp_time" field.
+func (m *ApireqMutation) ResetRespTime() {
+	m.resp_time = nil
+}
+
+// SetRespStatus sets the "resp_status" field.
+func (m *ApireqMutation) SetRespStatus(i int) {
+	m.resp_status = &i
+	m.addresp_status = nil
+}
+
+// RespStatus returns the value of the "resp_status" field in the mutation.
+func (m *ApireqMutation) RespStatus() (r int, exists bool) {
+	v := m.resp_status
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldRespStatus returns the old "resp_status" field's value of the Apireq entity.
+// If the Apireq object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *ApireqMutation) OldRespStatus(ctx context.Context) (v int, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldRespStatus is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldRespStatus requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldRespStatus: %w", err)
+	}
+	return oldValue.RespStatus, nil
+}
+
+// AddRespStatus adds i to the "resp_status" field.
+func (m *ApireqMutation) AddRespStatus(i int) {
+	if m.addresp_status != nil {
+		*m.addresp_status += i
+	} else {
+		m.addresp_status = &i
+	}
+}
+
+// AddedRespStatus returns the value that was added to the "resp_status" field in this mutation.
+func (m *ApireqMutation) AddedRespStatus() (r int, exists bool) {
+	v := m.addresp_status
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// ClearRespStatus clears the value of the "resp_status" field.
+func (m *ApireqMutation) ClearRespStatus() {
+	m.resp_status = nil
+	m.addresp_status = nil
+	m.clearedFields[apireq.FieldRespStatus] = struct{}{}
+}
+
+// RespStatusCleared returns if the "resp_status" field was cleared in this mutation.
+func (m *ApireqMutation) RespStatusCleared() bool {
+	_, ok := m.clearedFields[apireq.FieldRespStatus]
+	return ok
+}
+
+// ResetRespStatus resets all changes to the "resp_status" field.
+func (m *ApireqMutation) ResetRespStatus() {
+	m.resp_status = nil
+	m.addresp_status = nil
+	delete(m.clearedFields, apireq.FieldRespStatus)
+}
+
+// SetRespBody sets the "resp_body" field.
+func (m *ApireqMutation) SetRespBody(s string) {
+	m.resp_body = &s
+}
+
+// RespBody returns the value of the "resp_body" field in the mutation.
+func (m *ApireqMutation) RespBody() (r string, exists bool) {
+	v := m.resp_body
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldRespBody returns the old "resp_body" field's value of the Apireq entity.
+// If the Apireq object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *ApireqMutation) OldRespBody(ctx context.Context) (v string, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldRespBody is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldRespBody requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldRespBody: %w", err)
+	}
+	return oldValue.RespBody, nil
+}
+
+// ClearRespBody clears the value of the "resp_body" field.
+func (m *ApireqMutation) ClearRespBody() {
+	m.resp_body = nil
+	m.clearedFields[apireq.FieldRespBody] = struct{}{}
+}
+
+// RespBodyCleared returns if the "resp_body" field was cleared in this mutation.
+func (m *ApireqMutation) RespBodyCleared() bool {
+	_, ok := m.clearedFields[apireq.FieldRespBody]
+	return ok
+}
+
+// ResetRespBody resets all changes to the "resp_body" field.
+func (m *ApireqMutation) ResetRespBody() {
+	m.resp_body = nil
+	delete(m.clearedFields, apireq.FieldRespBody)
+}
+
+// SetRespHeaders sets the "resp_headers" field.
+func (m *ApireqMutation) SetRespHeaders(s string) {
+	m.resp_headers = &s
+}
+
+// RespHeaders returns the value of the "resp_headers" field in the mutation.
+func (m *ApireqMutation) RespHeaders() (r string, exists bool) {
+	v := m.resp_headers
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldRespHeaders returns the old "resp_headers" field's value of the Apireq entity.
+// If the Apireq object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *ApireqMutation) OldRespHeaders(ctx context.Context) (v string, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldRespHeaders is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldRespHeaders requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldRespHeaders: %w", err)
+	}
+	return oldValue.RespHeaders, nil
+}
+
+// ClearRespHeaders clears the value of the "resp_headers" field.
+func (m *ApireqMutation) ClearRespHeaders() {
+	m.resp_headers = nil
+	m.clearedFields[apireq.FieldRespHeaders] = struct{}{}
+}
+
+// RespHeadersCleared returns if the "resp_headers" field was cleared in this mutation.
+func (m *ApireqMutation) RespHeadersCleared() bool {
+	_, ok := m.clearedFields[apireq.FieldRespHeaders]
+	return ok
+}
+
+// ResetRespHeaders resets all changes to the "resp_headers" field.
+func (m *ApireqMutation) ResetRespHeaders() {
+	m.resp_headers = nil
+	delete(m.clearedFields, apireq.FieldRespHeaders)
+}
+
+// SetRespMetadata sets the "resp_metadata" field.
+func (m *ApireqMutation) SetRespMetadata(value map[string]interface{}) {
+	m.resp_metadata = &value
+}
+
+// RespMetadata returns the value of the "resp_metadata" field in the mutation.
+func (m *ApireqMutation) RespMetadata() (r map[string]interface{}, exists bool) {
+	v := m.resp_metadata
+	if v == nil {
+		return
+	}
+	return *v, true
+}
+
+// OldRespMetadata returns the old "resp_metadata" field's value of the Apireq entity.
+// If the Apireq object wasn't provided to the builder, the object is fetched from the database.
+// An error is returned if the mutation operation is not UpdateOne, or the database query fails.
+func (m *ApireqMutation) OldRespMetadata(ctx context.Context) (v map[string]interface{}, err error) {
+	if !m.op.Is(OpUpdateOne) {
+		return v, errors.New("OldRespMetadata is only allowed on UpdateOne operations")
+	}
+	if m.id == nil || m.oldValue == nil {
+		return v, errors.New("OldRespMetadata requires an ID field in the mutation")
+	}
+	oldValue, err := m.oldValue(ctx)
+	if err != nil {
+		return v, fmt.Errorf("querying old value for OldRespMetadata: %w", err)
+	}
+	return oldValue.RespMetadata, nil
+}
+
+// ClearRespMetadata clears the value of the "resp_metadata" field.
+func (m *ApireqMutation) ClearRespMetadata() {
+	m.resp_metadata = nil
+	m.clearedFields[apireq.FieldRespMetadata] = struct{}{}
+}
+
+// RespMetadataCleared returns if the "resp_metadata" field was cleared in this mutation.
+func (m *ApireqMutation) RespMetadataCleared() bool {
+	_, ok := m.clearedFields[apireq.FieldRespMetadata]
+	return ok
+}
+
+// ResetRespMetadata resets all changes to the "resp_metadata" field.
+func (m *ApireqMutation) ResetRespMetadata() {
+	m.resp_metadata = nil
+	delete(m.clearedFields, apireq.FieldRespMetadata)
 }
 
 // SetCreatedAt sets the "created_at" field.
@@ -504,7 +815,7 @@ func (m *ApireqMutation) Type() string {
 // order to get all numeric fields that were incremented/decremented, call
 // AddedFields().
 func (m *ApireqMutation) Fields() []string {
-	fields := make([]string, 0, 8)
+	fields := make([]string, 0, 13)
 	if m.req_time != nil {
 		fields = append(fields, apireq.FieldReqTime)
 	}
@@ -519,6 +830,21 @@ func (m *ApireqMutation) Fields() []string {
 	}
 	if m.req_metadata != nil {
 		fields = append(fields, apireq.FieldReqMetadata)
+	}
+	if m.resp_time != nil {
+		fields = append(fields, apireq.FieldRespTime)
+	}
+	if m.resp_status != nil {
+		fields = append(fields, apireq.FieldRespStatus)
+	}
+	if m.resp_body != nil {
+		fields = append(fields, apireq.FieldRespBody)
+	}
+	if m.resp_headers != nil {
+		fields = append(fields, apireq.FieldRespHeaders)
+	}
+	if m.resp_metadata != nil {
+		fields = append(fields, apireq.FieldRespMetadata)
 	}
 	if m.created_at != nil {
 		fields = append(fields, apireq.FieldCreatedAt)
@@ -547,6 +873,16 @@ func (m *ApireqMutation) Field(name string) (ent.Value, bool) {
 		return m.ReqHeaders()
 	case apireq.FieldReqMetadata:
 		return m.ReqMetadata()
+	case apireq.FieldRespTime:
+		return m.RespTime()
+	case apireq.FieldRespStatus:
+		return m.RespStatus()
+	case apireq.FieldRespBody:
+		return m.RespBody()
+	case apireq.FieldRespHeaders:
+		return m.RespHeaders()
+	case apireq.FieldRespMetadata:
+		return m.RespMetadata()
 	case apireq.FieldCreatedAt:
 		return m.CreatedAt()
 	case apireq.FieldUpdatedAt:
@@ -572,6 +908,16 @@ func (m *ApireqMutation) OldField(ctx context.Context, name string) (ent.Value, 
 		return m.OldReqHeaders(ctx)
 	case apireq.FieldReqMetadata:
 		return m.OldReqMetadata(ctx)
+	case apireq.FieldRespTime:
+		return m.OldRespTime(ctx)
+	case apireq.FieldRespStatus:
+		return m.OldRespStatus(ctx)
+	case apireq.FieldRespBody:
+		return m.OldRespBody(ctx)
+	case apireq.FieldRespHeaders:
+		return m.OldRespHeaders(ctx)
+	case apireq.FieldRespMetadata:
+		return m.OldRespMetadata(ctx)
 	case apireq.FieldCreatedAt:
 		return m.OldCreatedAt(ctx)
 	case apireq.FieldUpdatedAt:
@@ -595,32 +941,67 @@ func (m *ApireqMutation) SetField(name string, value ent.Value) error {
 		m.SetReqTime(v)
 		return nil
 	case apireq.FieldReqParam:
-		v, ok := value.(map[string]interface{})
+		v, ok := value.(string)
 		if !ok {
 			return fmt.Errorf("unexpected type %T for field %s", value, name)
 		}
 		m.SetReqParam(v)
 		return nil
 	case apireq.FieldReqBody:
-		v, ok := value.(map[string]interface{})
+		v, ok := value.(string)
 		if !ok {
 			return fmt.Errorf("unexpected type %T for field %s", value, name)
 		}
 		m.SetReqBody(v)
 		return nil
 	case apireq.FieldReqHeaders:
-		v, ok := value.(map[string]interface{})
+		v, ok := value.(string)
 		if !ok {
 			return fmt.Errorf("unexpected type %T for field %s", value, name)
 		}
 		m.SetReqHeaders(v)
 		return nil
 	case apireq.FieldReqMetadata:
-		v, ok := value.(map[string]interface{})
+		v, ok := value.(string)
 		if !ok {
 			return fmt.Errorf("unexpected type %T for field %s", value, name)
 		}
 		m.SetReqMetadata(v)
+		return nil
+	case apireq.FieldRespTime:
+		v, ok := value.(time.Time)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetRespTime(v)
+		return nil
+	case apireq.FieldRespStatus:
+		v, ok := value.(int)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetRespStatus(v)
+		return nil
+	case apireq.FieldRespBody:
+		v, ok := value.(string)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetRespBody(v)
+		return nil
+	case apireq.FieldRespHeaders:
+		v, ok := value.(string)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetRespHeaders(v)
+		return nil
+	case apireq.FieldRespMetadata:
+		v, ok := value.(map[string]interface{})
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.SetRespMetadata(v)
 		return nil
 	case apireq.FieldCreatedAt:
 		v, ok := value.(time.Time)
@@ -650,13 +1031,21 @@ func (m *ApireqMutation) SetField(name string, value ent.Value) error {
 // AddedFields returns all numeric fields that were incremented/decremented during
 // this mutation.
 func (m *ApireqMutation) AddedFields() []string {
-	return nil
+	var fields []string
+	if m.addresp_status != nil {
+		fields = append(fields, apireq.FieldRespStatus)
+	}
+	return fields
 }
 
 // AddedField returns the numeric value that was incremented/decremented on a field
 // with the given name. The second boolean return value indicates that this field
 // was not set, or was not defined in the schema.
 func (m *ApireqMutation) AddedField(name string) (ent.Value, bool) {
+	switch name {
+	case apireq.FieldRespStatus:
+		return m.AddedRespStatus()
+	}
 	return nil, false
 }
 
@@ -665,6 +1054,13 @@ func (m *ApireqMutation) AddedField(name string) (ent.Value, bool) {
 // type.
 func (m *ApireqMutation) AddField(name string, value ent.Value) error {
 	switch name {
+	case apireq.FieldRespStatus:
+		v, ok := value.(int)
+		if !ok {
+			return fmt.Errorf("unexpected type %T for field %s", value, name)
+		}
+		m.AddRespStatus(v)
+		return nil
 	}
 	return fmt.Errorf("unknown Apireq numeric field %s", name)
 }
@@ -673,6 +1069,30 @@ func (m *ApireqMutation) AddField(name string, value ent.Value) error {
 // mutation.
 func (m *ApireqMutation) ClearedFields() []string {
 	var fields []string
+	if m.FieldCleared(apireq.FieldReqParam) {
+		fields = append(fields, apireq.FieldReqParam)
+	}
+	if m.FieldCleared(apireq.FieldReqBody) {
+		fields = append(fields, apireq.FieldReqBody)
+	}
+	if m.FieldCleared(apireq.FieldReqHeaders) {
+		fields = append(fields, apireq.FieldReqHeaders)
+	}
+	if m.FieldCleared(apireq.FieldReqMetadata) {
+		fields = append(fields, apireq.FieldReqMetadata)
+	}
+	if m.FieldCleared(apireq.FieldRespStatus) {
+		fields = append(fields, apireq.FieldRespStatus)
+	}
+	if m.FieldCleared(apireq.FieldRespBody) {
+		fields = append(fields, apireq.FieldRespBody)
+	}
+	if m.FieldCleared(apireq.FieldRespHeaders) {
+		fields = append(fields, apireq.FieldRespHeaders)
+	}
+	if m.FieldCleared(apireq.FieldRespMetadata) {
+		fields = append(fields, apireq.FieldRespMetadata)
+	}
 	if m.FieldCleared(apireq.FieldDeletedAt) {
 		fields = append(fields, apireq.FieldDeletedAt)
 	}
@@ -690,6 +1110,30 @@ func (m *ApireqMutation) FieldCleared(name string) bool {
 // error if the field is not defined in the schema.
 func (m *ApireqMutation) ClearField(name string) error {
 	switch name {
+	case apireq.FieldReqParam:
+		m.ClearReqParam()
+		return nil
+	case apireq.FieldReqBody:
+		m.ClearReqBody()
+		return nil
+	case apireq.FieldReqHeaders:
+		m.ClearReqHeaders()
+		return nil
+	case apireq.FieldReqMetadata:
+		m.ClearReqMetadata()
+		return nil
+	case apireq.FieldRespStatus:
+		m.ClearRespStatus()
+		return nil
+	case apireq.FieldRespBody:
+		m.ClearRespBody()
+		return nil
+	case apireq.FieldRespHeaders:
+		m.ClearRespHeaders()
+		return nil
+	case apireq.FieldRespMetadata:
+		m.ClearRespMetadata()
+		return nil
 	case apireq.FieldDeletedAt:
 		m.ClearDeletedAt()
 		return nil
@@ -715,6 +1159,21 @@ func (m *ApireqMutation) ResetField(name string) error {
 		return nil
 	case apireq.FieldReqMetadata:
 		m.ResetReqMetadata()
+		return nil
+	case apireq.FieldRespTime:
+		m.ResetRespTime()
+		return nil
+	case apireq.FieldRespStatus:
+		m.ResetRespStatus()
+		return nil
+	case apireq.FieldRespBody:
+		m.ResetRespBody()
+		return nil
+	case apireq.FieldRespHeaders:
+		m.ResetRespHeaders()
+		return nil
+	case apireq.FieldRespMetadata:
+		m.ResetRespMetadata()
 		return nil
 	case apireq.FieldCreatedAt:
 		m.ResetCreatedAt()

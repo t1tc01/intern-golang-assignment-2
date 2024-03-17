@@ -16,11 +16,17 @@ type Apireq struct {
 func (Apireq) Fields() []ent.Field {
     return []ent.Field{field.Int("id"),
         field.Time("req_time"),
-        field.JSON("req_param", map[string]interface{}{}),
-        field.JSON("req_body", map[string]interface{}{}),
-        field.JSON("req_headers", map[string]interface{}{}),
-        field.JSON("req_metadata", map[string]interface{}{}),
-        field.Time("created_at"), field.Time("updated_at"),
+        field.String("req_param").Optional(),
+        field.String("req_body").Optional(),
+        field.String("req_headers").Optional(),
+        field.String("req_metadata").Optional(),
+        field.Time("resp_time"),
+        field.Int("resp_status").Optional(),
+        field.String("resp_body").Optional(),
+        field.String("resp_headers").Optional(),
+        field.JSON("resp_metadata", map[string]interface{}{}).Optional(),
+        field.Time("created_at"), 
+        field.Time("updated_at"),
         field.Time("deleted_at").Optional()}
  
 }

@@ -7,6 +7,7 @@ import (
 	"golang-intern/assignment-2/ent/featuretype"
 	"golang-intern/assignment-2/ent/source"
 	"golang-intern/assignment-2/model"
+	"golang-intern/assignment-2/util"
 	"strings"
 	"time"
 
@@ -24,8 +25,20 @@ func fetchData(url string) ([]byte, error) {
 	return res.Data.([]byte), nil
 }
 
-// Get all data and save to postgresql db
-func HandlerData() error {
+// HandlerData example
+//
+//	@Summary		Fetch data from
+//	@Description	get string by ID
+//	@ID				get-string-by-int
+//	@Accept			json
+//	@Produce		json
+//	@Param			some_id	path		int				true	"Some ID"
+//	@Param			some_id	body		web.Pet			true	"Some ID"
+//	@Success		200		{string}	string			"ok"
+//	@Failure		400		{object}	web.APIError	"We need ID!!"
+//	@Failure		404		{object}	web.APIError	"Can not find ID"
+//	@Router			/fetchgeo/{number} [post]
+func HandlerData(recordNumber int) error {
 	var geoJSON model.GeoJSON
 
 	//Sace Json to struct
@@ -38,6 +51,11 @@ func HandlerData() error {
 	if err != nil {
 		fmt.Println("Error:", err)
 		return err
+	}
+
+	//
+	if recordNumber < 1 {
+		recordNumber = len(geoJSON.Features)
 	}
 
 	//Get types and source
@@ -82,7 +100,7 @@ func HandlerData() error {
 			SetFeatType(key).
 			SetCreatedAt(current_time).
 			SetUpdatedAt(current_time).
-			SaveX(ctx)
+			SaveX(util.Ctx)
 	}
 
 	for key := range sources_map {
@@ -91,12 +109,12 @@ func HandlerData() error {
 			SetName(key).
 			SetCreatedAt(current_time).
 			SetUpdatedAt(current_time).
-			SaveX(ctx)
+			SaveX(util.Ctx)
 	}
 
 	//Save to Database
 
-	for _, feature := range geoJSON.Features {
+	for _, feature := range geoJSON.Features[:recordNumber] {
 
 		current_time := time.Now()
 
@@ -107,7 +125,7 @@ func HandlerData() error {
 			SetPlace(place).
 			SetCreatedAt(current_time).
 			SetUpdatedAt(current_time).
-			SaveX(ctx)
+			SaveX(util.Ctx)
 
 		//Save geometry
 		location_id := location.ID
@@ -122,7 +140,7 @@ func HandlerData() error {
 			SetDepth(depth).
 			SetCreatedAt(current_time).
 			SetUpdatedAt(current_time).
-			SaveX(ctx)
+			SaveX(util.Ctx)
 
 		//Save Report
 
@@ -138,7 +156,7 @@ func HandlerData() error {
 			SetAlert(alert).
 			SetCreatedAt(current_time).
 			SetUpdatedAt(current_time).
-			SaveX(ctx)
+			SaveX(util.Ctx)
 
 		//Save earth
 		geo_id := geometry.ID
@@ -184,7 +202,7 @@ func HandlerData() error {
 			SetEqType(eq_type).
 			SetCreatedAt(current_time).
 			SetUpdatedAt(current_time).
-			SaveX(ctx)
+			SaveX(util.Ctx)
 
 		eq_id := equake.ID
 		//Save feature type
@@ -201,7 +219,7 @@ func HandlerData() error {
 			//Get ftype ID
 			ftype := db.Client.FeatureType.Query().
 				Where(featuretype.FeatType(types[i])).
-				OnlyX(ctx)
+				OnlyX(util.Ctx)
 
 			//Save to table
 			_ = db.Client.FtypeEarthquake.Create().
@@ -209,7 +227,7 @@ func HandlerData() error {
 				SetEqID(eq_id).
 				SetCreatedAt(current_time).
 				SetUpdatedAt(current_time).
-				SaveX(ctx)
+				SaveX(util.Ctx)
 
 		}
 
@@ -227,7 +245,7 @@ func HandlerData() error {
 			//
 			s := db.Client.Source.Query().
 				Where(source.Name(names[i])).
-				OnlyX(ctx)
+				OnlyX(util.Ctx)
 
 			//
 			_ = db.Client.SourceEarthquake.Create().
@@ -235,7 +253,7 @@ func HandlerData() error {
 				SetEqID(eq_id).
 				SetCreatedAt(current_time).
 				SetUpdatedAt(current_time).
-				SaveX(ctx)
+				SaveX(util.Ctx)
 		}
 
 	}

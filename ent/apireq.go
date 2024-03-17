@@ -21,13 +21,23 @@ type Apireq struct {
 	// ReqTime holds the value of the "req_time" field.
 	ReqTime time.Time `json:"req_time,omitempty"`
 	// ReqParam holds the value of the "req_param" field.
-	ReqParam map[string]interface{} `json:"req_param,omitempty"`
+	ReqParam string `json:"req_param,omitempty"`
 	// ReqBody holds the value of the "req_body" field.
-	ReqBody map[string]interface{} `json:"req_body,omitempty"`
+	ReqBody string `json:"req_body,omitempty"`
 	// ReqHeaders holds the value of the "req_headers" field.
-	ReqHeaders map[string]interface{} `json:"req_headers,omitempty"`
+	ReqHeaders string `json:"req_headers,omitempty"`
 	// ReqMetadata holds the value of the "req_metadata" field.
-	ReqMetadata map[string]interface{} `json:"req_metadata,omitempty"`
+	ReqMetadata string `json:"req_metadata,omitempty"`
+	// RespTime holds the value of the "resp_time" field.
+	RespTime time.Time `json:"resp_time,omitempty"`
+	// RespStatus holds the value of the "resp_status" field.
+	RespStatus int `json:"resp_status,omitempty"`
+	// RespBody holds the value of the "resp_body" field.
+	RespBody string `json:"resp_body,omitempty"`
+	// RespHeaders holds the value of the "resp_headers" field.
+	RespHeaders string `json:"resp_headers,omitempty"`
+	// RespMetadata holds the value of the "resp_metadata" field.
+	RespMetadata map[string]interface{} `json:"resp_metadata,omitempty"`
 	// CreatedAt holds the value of the "created_at" field.
 	CreatedAt time.Time `json:"created_at,omitempty"`
 	// UpdatedAt holds the value of the "updated_at" field.
@@ -42,11 +52,13 @@ func (*Apireq) scanValues(columns []string) ([]any, error) {
 	values := make([]any, len(columns))
 	for i := range columns {
 		switch columns[i] {
-		case apireq.FieldReqParam, apireq.FieldReqBody, apireq.FieldReqHeaders, apireq.FieldReqMetadata:
+		case apireq.FieldRespMetadata:
 			values[i] = new([]byte)
-		case apireq.FieldID:
+		case apireq.FieldID, apireq.FieldRespStatus:
 			values[i] = new(sql.NullInt64)
-		case apireq.FieldReqTime, apireq.FieldCreatedAt, apireq.FieldUpdatedAt, apireq.FieldDeletedAt:
+		case apireq.FieldReqParam, apireq.FieldReqBody, apireq.FieldReqHeaders, apireq.FieldReqMetadata, apireq.FieldRespBody, apireq.FieldRespHeaders:
+			values[i] = new(sql.NullString)
+		case apireq.FieldReqTime, apireq.FieldRespTime, apireq.FieldCreatedAt, apireq.FieldUpdatedAt, apireq.FieldDeletedAt:
 			values[i] = new(sql.NullTime)
 		default:
 			values[i] = new(sql.UnknownType)
@@ -76,35 +88,59 @@ func (a *Apireq) assignValues(columns []string, values []any) error {
 				a.ReqTime = value.Time
 			}
 		case apireq.FieldReqParam:
-			if value, ok := values[i].(*[]byte); !ok {
+			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field req_param", values[i])
-			} else if value != nil && len(*value) > 0 {
-				if err := json.Unmarshal(*value, &a.ReqParam); err != nil {
-					return fmt.Errorf("unmarshal field req_param: %w", err)
-				}
+			} else if value.Valid {
+				a.ReqParam = value.String
 			}
 		case apireq.FieldReqBody:
-			if value, ok := values[i].(*[]byte); !ok {
+			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field req_body", values[i])
-			} else if value != nil && len(*value) > 0 {
-				if err := json.Unmarshal(*value, &a.ReqBody); err != nil {
-					return fmt.Errorf("unmarshal field req_body: %w", err)
-				}
+			} else if value.Valid {
+				a.ReqBody = value.String
 			}
 		case apireq.FieldReqHeaders:
-			if value, ok := values[i].(*[]byte); !ok {
+			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field req_headers", values[i])
-			} else if value != nil && len(*value) > 0 {
-				if err := json.Unmarshal(*value, &a.ReqHeaders); err != nil {
-					return fmt.Errorf("unmarshal field req_headers: %w", err)
-				}
+			} else if value.Valid {
+				a.ReqHeaders = value.String
 			}
 		case apireq.FieldReqMetadata:
-			if value, ok := values[i].(*[]byte); !ok {
+			if value, ok := values[i].(*sql.NullString); !ok {
 				return fmt.Errorf("unexpected type %T for field req_metadata", values[i])
+			} else if value.Valid {
+				a.ReqMetadata = value.String
+			}
+		case apireq.FieldRespTime:
+			if value, ok := values[i].(*sql.NullTime); !ok {
+				return fmt.Errorf("unexpected type %T for field resp_time", values[i])
+			} else if value.Valid {
+				a.RespTime = value.Time
+			}
+		case apireq.FieldRespStatus:
+			if value, ok := values[i].(*sql.NullInt64); !ok {
+				return fmt.Errorf("unexpected type %T for field resp_status", values[i])
+			} else if value.Valid {
+				a.RespStatus = int(value.Int64)
+			}
+		case apireq.FieldRespBody:
+			if value, ok := values[i].(*sql.NullString); !ok {
+				return fmt.Errorf("unexpected type %T for field resp_body", values[i])
+			} else if value.Valid {
+				a.RespBody = value.String
+			}
+		case apireq.FieldRespHeaders:
+			if value, ok := values[i].(*sql.NullString); !ok {
+				return fmt.Errorf("unexpected type %T for field resp_headers", values[i])
+			} else if value.Valid {
+				a.RespHeaders = value.String
+			}
+		case apireq.FieldRespMetadata:
+			if value, ok := values[i].(*[]byte); !ok {
+				return fmt.Errorf("unexpected type %T for field resp_metadata", values[i])
 			} else if value != nil && len(*value) > 0 {
-				if err := json.Unmarshal(*value, &a.ReqMetadata); err != nil {
-					return fmt.Errorf("unmarshal field req_metadata: %w", err)
+				if err := json.Unmarshal(*value, &a.RespMetadata); err != nil {
+					return fmt.Errorf("unmarshal field resp_metadata: %w", err)
 				}
 			}
 		case apireq.FieldCreatedAt:
@@ -165,16 +201,31 @@ func (a *Apireq) String() string {
 	builder.WriteString(a.ReqTime.Format(time.ANSIC))
 	builder.WriteString(", ")
 	builder.WriteString("req_param=")
-	builder.WriteString(fmt.Sprintf("%v", a.ReqParam))
+	builder.WriteString(a.ReqParam)
 	builder.WriteString(", ")
 	builder.WriteString("req_body=")
-	builder.WriteString(fmt.Sprintf("%v", a.ReqBody))
+	builder.WriteString(a.ReqBody)
 	builder.WriteString(", ")
 	builder.WriteString("req_headers=")
-	builder.WriteString(fmt.Sprintf("%v", a.ReqHeaders))
+	builder.WriteString(a.ReqHeaders)
 	builder.WriteString(", ")
 	builder.WriteString("req_metadata=")
-	builder.WriteString(fmt.Sprintf("%v", a.ReqMetadata))
+	builder.WriteString(a.ReqMetadata)
+	builder.WriteString(", ")
+	builder.WriteString("resp_time=")
+	builder.WriteString(a.RespTime.Format(time.ANSIC))
+	builder.WriteString(", ")
+	builder.WriteString("resp_status=")
+	builder.WriteString(fmt.Sprintf("%v", a.RespStatus))
+	builder.WriteString(", ")
+	builder.WriteString("resp_body=")
+	builder.WriteString(a.RespBody)
+	builder.WriteString(", ")
+	builder.WriteString("resp_headers=")
+	builder.WriteString(a.RespHeaders)
+	builder.WriteString(", ")
+	builder.WriteString("resp_metadata=")
+	builder.WriteString(fmt.Sprintf("%v", a.RespMetadata))
 	builder.WriteString(", ")
 	builder.WriteString("created_at=")
 	builder.WriteString(a.CreatedAt.Format(time.ANSIC))

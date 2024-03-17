@@ -59,6 +59,46 @@ func ReqTime(v time.Time) predicate.Apireq {
 	return predicate.Apireq(sql.FieldEQ(FieldReqTime, v))
 }
 
+// ReqParam applies equality check predicate on the "req_param" field. It's identical to ReqParamEQ.
+func ReqParam(v string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldEQ(FieldReqParam, v))
+}
+
+// ReqBody applies equality check predicate on the "req_body" field. It's identical to ReqBodyEQ.
+func ReqBody(v string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldEQ(FieldReqBody, v))
+}
+
+// ReqHeaders applies equality check predicate on the "req_headers" field. It's identical to ReqHeadersEQ.
+func ReqHeaders(v string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldEQ(FieldReqHeaders, v))
+}
+
+// ReqMetadata applies equality check predicate on the "req_metadata" field. It's identical to ReqMetadataEQ.
+func ReqMetadata(v string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldEQ(FieldReqMetadata, v))
+}
+
+// RespTime applies equality check predicate on the "resp_time" field. It's identical to RespTimeEQ.
+func RespTime(v time.Time) predicate.Apireq {
+	return predicate.Apireq(sql.FieldEQ(FieldRespTime, v))
+}
+
+// RespStatus applies equality check predicate on the "resp_status" field. It's identical to RespStatusEQ.
+func RespStatus(v int) predicate.Apireq {
+	return predicate.Apireq(sql.FieldEQ(FieldRespStatus, v))
+}
+
+// RespBody applies equality check predicate on the "resp_body" field. It's identical to RespBodyEQ.
+func RespBody(v string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldEQ(FieldRespBody, v))
+}
+
+// RespHeaders applies equality check predicate on the "resp_headers" field. It's identical to RespHeadersEQ.
+func RespHeaders(v string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldEQ(FieldRespHeaders, v))
+}
+
 // CreatedAt applies equality check predicate on the "created_at" field. It's identical to CreatedAtEQ.
 func CreatedAt(v time.Time) predicate.Apireq {
 	return predicate.Apireq(sql.FieldEQ(FieldCreatedAt, v))
@@ -112,6 +152,556 @@ func ReqTimeLT(v time.Time) predicate.Apireq {
 // ReqTimeLTE applies the LTE predicate on the "req_time" field.
 func ReqTimeLTE(v time.Time) predicate.Apireq {
 	return predicate.Apireq(sql.FieldLTE(FieldReqTime, v))
+}
+
+// ReqParamEQ applies the EQ predicate on the "req_param" field.
+func ReqParamEQ(v string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldEQ(FieldReqParam, v))
+}
+
+// ReqParamNEQ applies the NEQ predicate on the "req_param" field.
+func ReqParamNEQ(v string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldNEQ(FieldReqParam, v))
+}
+
+// ReqParamIn applies the In predicate on the "req_param" field.
+func ReqParamIn(vs ...string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldIn(FieldReqParam, vs...))
+}
+
+// ReqParamNotIn applies the NotIn predicate on the "req_param" field.
+func ReqParamNotIn(vs ...string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldNotIn(FieldReqParam, vs...))
+}
+
+// ReqParamGT applies the GT predicate on the "req_param" field.
+func ReqParamGT(v string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldGT(FieldReqParam, v))
+}
+
+// ReqParamGTE applies the GTE predicate on the "req_param" field.
+func ReqParamGTE(v string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldGTE(FieldReqParam, v))
+}
+
+// ReqParamLT applies the LT predicate on the "req_param" field.
+func ReqParamLT(v string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldLT(FieldReqParam, v))
+}
+
+// ReqParamLTE applies the LTE predicate on the "req_param" field.
+func ReqParamLTE(v string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldLTE(FieldReqParam, v))
+}
+
+// ReqParamContains applies the Contains predicate on the "req_param" field.
+func ReqParamContains(v string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldContains(FieldReqParam, v))
+}
+
+// ReqParamHasPrefix applies the HasPrefix predicate on the "req_param" field.
+func ReqParamHasPrefix(v string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldHasPrefix(FieldReqParam, v))
+}
+
+// ReqParamHasSuffix applies the HasSuffix predicate on the "req_param" field.
+func ReqParamHasSuffix(v string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldHasSuffix(FieldReqParam, v))
+}
+
+// ReqParamIsNil applies the IsNil predicate on the "req_param" field.
+func ReqParamIsNil() predicate.Apireq {
+	return predicate.Apireq(sql.FieldIsNull(FieldReqParam))
+}
+
+// ReqParamNotNil applies the NotNil predicate on the "req_param" field.
+func ReqParamNotNil() predicate.Apireq {
+	return predicate.Apireq(sql.FieldNotNull(FieldReqParam))
+}
+
+// ReqParamEqualFold applies the EqualFold predicate on the "req_param" field.
+func ReqParamEqualFold(v string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldEqualFold(FieldReqParam, v))
+}
+
+// ReqParamContainsFold applies the ContainsFold predicate on the "req_param" field.
+func ReqParamContainsFold(v string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldContainsFold(FieldReqParam, v))
+}
+
+// ReqBodyEQ applies the EQ predicate on the "req_body" field.
+func ReqBodyEQ(v string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldEQ(FieldReqBody, v))
+}
+
+// ReqBodyNEQ applies the NEQ predicate on the "req_body" field.
+func ReqBodyNEQ(v string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldNEQ(FieldReqBody, v))
+}
+
+// ReqBodyIn applies the In predicate on the "req_body" field.
+func ReqBodyIn(vs ...string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldIn(FieldReqBody, vs...))
+}
+
+// ReqBodyNotIn applies the NotIn predicate on the "req_body" field.
+func ReqBodyNotIn(vs ...string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldNotIn(FieldReqBody, vs...))
+}
+
+// ReqBodyGT applies the GT predicate on the "req_body" field.
+func ReqBodyGT(v string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldGT(FieldReqBody, v))
+}
+
+// ReqBodyGTE applies the GTE predicate on the "req_body" field.
+func ReqBodyGTE(v string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldGTE(FieldReqBody, v))
+}
+
+// ReqBodyLT applies the LT predicate on the "req_body" field.
+func ReqBodyLT(v string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldLT(FieldReqBody, v))
+}
+
+// ReqBodyLTE applies the LTE predicate on the "req_body" field.
+func ReqBodyLTE(v string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldLTE(FieldReqBody, v))
+}
+
+// ReqBodyContains applies the Contains predicate on the "req_body" field.
+func ReqBodyContains(v string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldContains(FieldReqBody, v))
+}
+
+// ReqBodyHasPrefix applies the HasPrefix predicate on the "req_body" field.
+func ReqBodyHasPrefix(v string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldHasPrefix(FieldReqBody, v))
+}
+
+// ReqBodyHasSuffix applies the HasSuffix predicate on the "req_body" field.
+func ReqBodyHasSuffix(v string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldHasSuffix(FieldReqBody, v))
+}
+
+// ReqBodyIsNil applies the IsNil predicate on the "req_body" field.
+func ReqBodyIsNil() predicate.Apireq {
+	return predicate.Apireq(sql.FieldIsNull(FieldReqBody))
+}
+
+// ReqBodyNotNil applies the NotNil predicate on the "req_body" field.
+func ReqBodyNotNil() predicate.Apireq {
+	return predicate.Apireq(sql.FieldNotNull(FieldReqBody))
+}
+
+// ReqBodyEqualFold applies the EqualFold predicate on the "req_body" field.
+func ReqBodyEqualFold(v string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldEqualFold(FieldReqBody, v))
+}
+
+// ReqBodyContainsFold applies the ContainsFold predicate on the "req_body" field.
+func ReqBodyContainsFold(v string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldContainsFold(FieldReqBody, v))
+}
+
+// ReqHeadersEQ applies the EQ predicate on the "req_headers" field.
+func ReqHeadersEQ(v string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldEQ(FieldReqHeaders, v))
+}
+
+// ReqHeadersNEQ applies the NEQ predicate on the "req_headers" field.
+func ReqHeadersNEQ(v string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldNEQ(FieldReqHeaders, v))
+}
+
+// ReqHeadersIn applies the In predicate on the "req_headers" field.
+func ReqHeadersIn(vs ...string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldIn(FieldReqHeaders, vs...))
+}
+
+// ReqHeadersNotIn applies the NotIn predicate on the "req_headers" field.
+func ReqHeadersNotIn(vs ...string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldNotIn(FieldReqHeaders, vs...))
+}
+
+// ReqHeadersGT applies the GT predicate on the "req_headers" field.
+func ReqHeadersGT(v string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldGT(FieldReqHeaders, v))
+}
+
+// ReqHeadersGTE applies the GTE predicate on the "req_headers" field.
+func ReqHeadersGTE(v string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldGTE(FieldReqHeaders, v))
+}
+
+// ReqHeadersLT applies the LT predicate on the "req_headers" field.
+func ReqHeadersLT(v string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldLT(FieldReqHeaders, v))
+}
+
+// ReqHeadersLTE applies the LTE predicate on the "req_headers" field.
+func ReqHeadersLTE(v string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldLTE(FieldReqHeaders, v))
+}
+
+// ReqHeadersContains applies the Contains predicate on the "req_headers" field.
+func ReqHeadersContains(v string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldContains(FieldReqHeaders, v))
+}
+
+// ReqHeadersHasPrefix applies the HasPrefix predicate on the "req_headers" field.
+func ReqHeadersHasPrefix(v string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldHasPrefix(FieldReqHeaders, v))
+}
+
+// ReqHeadersHasSuffix applies the HasSuffix predicate on the "req_headers" field.
+func ReqHeadersHasSuffix(v string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldHasSuffix(FieldReqHeaders, v))
+}
+
+// ReqHeadersIsNil applies the IsNil predicate on the "req_headers" field.
+func ReqHeadersIsNil() predicate.Apireq {
+	return predicate.Apireq(sql.FieldIsNull(FieldReqHeaders))
+}
+
+// ReqHeadersNotNil applies the NotNil predicate on the "req_headers" field.
+func ReqHeadersNotNil() predicate.Apireq {
+	return predicate.Apireq(sql.FieldNotNull(FieldReqHeaders))
+}
+
+// ReqHeadersEqualFold applies the EqualFold predicate on the "req_headers" field.
+func ReqHeadersEqualFold(v string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldEqualFold(FieldReqHeaders, v))
+}
+
+// ReqHeadersContainsFold applies the ContainsFold predicate on the "req_headers" field.
+func ReqHeadersContainsFold(v string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldContainsFold(FieldReqHeaders, v))
+}
+
+// ReqMetadataEQ applies the EQ predicate on the "req_metadata" field.
+func ReqMetadataEQ(v string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldEQ(FieldReqMetadata, v))
+}
+
+// ReqMetadataNEQ applies the NEQ predicate on the "req_metadata" field.
+func ReqMetadataNEQ(v string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldNEQ(FieldReqMetadata, v))
+}
+
+// ReqMetadataIn applies the In predicate on the "req_metadata" field.
+func ReqMetadataIn(vs ...string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldIn(FieldReqMetadata, vs...))
+}
+
+// ReqMetadataNotIn applies the NotIn predicate on the "req_metadata" field.
+func ReqMetadataNotIn(vs ...string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldNotIn(FieldReqMetadata, vs...))
+}
+
+// ReqMetadataGT applies the GT predicate on the "req_metadata" field.
+func ReqMetadataGT(v string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldGT(FieldReqMetadata, v))
+}
+
+// ReqMetadataGTE applies the GTE predicate on the "req_metadata" field.
+func ReqMetadataGTE(v string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldGTE(FieldReqMetadata, v))
+}
+
+// ReqMetadataLT applies the LT predicate on the "req_metadata" field.
+func ReqMetadataLT(v string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldLT(FieldReqMetadata, v))
+}
+
+// ReqMetadataLTE applies the LTE predicate on the "req_metadata" field.
+func ReqMetadataLTE(v string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldLTE(FieldReqMetadata, v))
+}
+
+// ReqMetadataContains applies the Contains predicate on the "req_metadata" field.
+func ReqMetadataContains(v string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldContains(FieldReqMetadata, v))
+}
+
+// ReqMetadataHasPrefix applies the HasPrefix predicate on the "req_metadata" field.
+func ReqMetadataHasPrefix(v string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldHasPrefix(FieldReqMetadata, v))
+}
+
+// ReqMetadataHasSuffix applies the HasSuffix predicate on the "req_metadata" field.
+func ReqMetadataHasSuffix(v string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldHasSuffix(FieldReqMetadata, v))
+}
+
+// ReqMetadataIsNil applies the IsNil predicate on the "req_metadata" field.
+func ReqMetadataIsNil() predicate.Apireq {
+	return predicate.Apireq(sql.FieldIsNull(FieldReqMetadata))
+}
+
+// ReqMetadataNotNil applies the NotNil predicate on the "req_metadata" field.
+func ReqMetadataNotNil() predicate.Apireq {
+	return predicate.Apireq(sql.FieldNotNull(FieldReqMetadata))
+}
+
+// ReqMetadataEqualFold applies the EqualFold predicate on the "req_metadata" field.
+func ReqMetadataEqualFold(v string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldEqualFold(FieldReqMetadata, v))
+}
+
+// ReqMetadataContainsFold applies the ContainsFold predicate on the "req_metadata" field.
+func ReqMetadataContainsFold(v string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldContainsFold(FieldReqMetadata, v))
+}
+
+// RespTimeEQ applies the EQ predicate on the "resp_time" field.
+func RespTimeEQ(v time.Time) predicate.Apireq {
+	return predicate.Apireq(sql.FieldEQ(FieldRespTime, v))
+}
+
+// RespTimeNEQ applies the NEQ predicate on the "resp_time" field.
+func RespTimeNEQ(v time.Time) predicate.Apireq {
+	return predicate.Apireq(sql.FieldNEQ(FieldRespTime, v))
+}
+
+// RespTimeIn applies the In predicate on the "resp_time" field.
+func RespTimeIn(vs ...time.Time) predicate.Apireq {
+	return predicate.Apireq(sql.FieldIn(FieldRespTime, vs...))
+}
+
+// RespTimeNotIn applies the NotIn predicate on the "resp_time" field.
+func RespTimeNotIn(vs ...time.Time) predicate.Apireq {
+	return predicate.Apireq(sql.FieldNotIn(FieldRespTime, vs...))
+}
+
+// RespTimeGT applies the GT predicate on the "resp_time" field.
+func RespTimeGT(v time.Time) predicate.Apireq {
+	return predicate.Apireq(sql.FieldGT(FieldRespTime, v))
+}
+
+// RespTimeGTE applies the GTE predicate on the "resp_time" field.
+func RespTimeGTE(v time.Time) predicate.Apireq {
+	return predicate.Apireq(sql.FieldGTE(FieldRespTime, v))
+}
+
+// RespTimeLT applies the LT predicate on the "resp_time" field.
+func RespTimeLT(v time.Time) predicate.Apireq {
+	return predicate.Apireq(sql.FieldLT(FieldRespTime, v))
+}
+
+// RespTimeLTE applies the LTE predicate on the "resp_time" field.
+func RespTimeLTE(v time.Time) predicate.Apireq {
+	return predicate.Apireq(sql.FieldLTE(FieldRespTime, v))
+}
+
+// RespStatusEQ applies the EQ predicate on the "resp_status" field.
+func RespStatusEQ(v int) predicate.Apireq {
+	return predicate.Apireq(sql.FieldEQ(FieldRespStatus, v))
+}
+
+// RespStatusNEQ applies the NEQ predicate on the "resp_status" field.
+func RespStatusNEQ(v int) predicate.Apireq {
+	return predicate.Apireq(sql.FieldNEQ(FieldRespStatus, v))
+}
+
+// RespStatusIn applies the In predicate on the "resp_status" field.
+func RespStatusIn(vs ...int) predicate.Apireq {
+	return predicate.Apireq(sql.FieldIn(FieldRespStatus, vs...))
+}
+
+// RespStatusNotIn applies the NotIn predicate on the "resp_status" field.
+func RespStatusNotIn(vs ...int) predicate.Apireq {
+	return predicate.Apireq(sql.FieldNotIn(FieldRespStatus, vs...))
+}
+
+// RespStatusGT applies the GT predicate on the "resp_status" field.
+func RespStatusGT(v int) predicate.Apireq {
+	return predicate.Apireq(sql.FieldGT(FieldRespStatus, v))
+}
+
+// RespStatusGTE applies the GTE predicate on the "resp_status" field.
+func RespStatusGTE(v int) predicate.Apireq {
+	return predicate.Apireq(sql.FieldGTE(FieldRespStatus, v))
+}
+
+// RespStatusLT applies the LT predicate on the "resp_status" field.
+func RespStatusLT(v int) predicate.Apireq {
+	return predicate.Apireq(sql.FieldLT(FieldRespStatus, v))
+}
+
+// RespStatusLTE applies the LTE predicate on the "resp_status" field.
+func RespStatusLTE(v int) predicate.Apireq {
+	return predicate.Apireq(sql.FieldLTE(FieldRespStatus, v))
+}
+
+// RespStatusIsNil applies the IsNil predicate on the "resp_status" field.
+func RespStatusIsNil() predicate.Apireq {
+	return predicate.Apireq(sql.FieldIsNull(FieldRespStatus))
+}
+
+// RespStatusNotNil applies the NotNil predicate on the "resp_status" field.
+func RespStatusNotNil() predicate.Apireq {
+	return predicate.Apireq(sql.FieldNotNull(FieldRespStatus))
+}
+
+// RespBodyEQ applies the EQ predicate on the "resp_body" field.
+func RespBodyEQ(v string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldEQ(FieldRespBody, v))
+}
+
+// RespBodyNEQ applies the NEQ predicate on the "resp_body" field.
+func RespBodyNEQ(v string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldNEQ(FieldRespBody, v))
+}
+
+// RespBodyIn applies the In predicate on the "resp_body" field.
+func RespBodyIn(vs ...string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldIn(FieldRespBody, vs...))
+}
+
+// RespBodyNotIn applies the NotIn predicate on the "resp_body" field.
+func RespBodyNotIn(vs ...string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldNotIn(FieldRespBody, vs...))
+}
+
+// RespBodyGT applies the GT predicate on the "resp_body" field.
+func RespBodyGT(v string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldGT(FieldRespBody, v))
+}
+
+// RespBodyGTE applies the GTE predicate on the "resp_body" field.
+func RespBodyGTE(v string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldGTE(FieldRespBody, v))
+}
+
+// RespBodyLT applies the LT predicate on the "resp_body" field.
+func RespBodyLT(v string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldLT(FieldRespBody, v))
+}
+
+// RespBodyLTE applies the LTE predicate on the "resp_body" field.
+func RespBodyLTE(v string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldLTE(FieldRespBody, v))
+}
+
+// RespBodyContains applies the Contains predicate on the "resp_body" field.
+func RespBodyContains(v string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldContains(FieldRespBody, v))
+}
+
+// RespBodyHasPrefix applies the HasPrefix predicate on the "resp_body" field.
+func RespBodyHasPrefix(v string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldHasPrefix(FieldRespBody, v))
+}
+
+// RespBodyHasSuffix applies the HasSuffix predicate on the "resp_body" field.
+func RespBodyHasSuffix(v string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldHasSuffix(FieldRespBody, v))
+}
+
+// RespBodyIsNil applies the IsNil predicate on the "resp_body" field.
+func RespBodyIsNil() predicate.Apireq {
+	return predicate.Apireq(sql.FieldIsNull(FieldRespBody))
+}
+
+// RespBodyNotNil applies the NotNil predicate on the "resp_body" field.
+func RespBodyNotNil() predicate.Apireq {
+	return predicate.Apireq(sql.FieldNotNull(FieldRespBody))
+}
+
+// RespBodyEqualFold applies the EqualFold predicate on the "resp_body" field.
+func RespBodyEqualFold(v string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldEqualFold(FieldRespBody, v))
+}
+
+// RespBodyContainsFold applies the ContainsFold predicate on the "resp_body" field.
+func RespBodyContainsFold(v string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldContainsFold(FieldRespBody, v))
+}
+
+// RespHeadersEQ applies the EQ predicate on the "resp_headers" field.
+func RespHeadersEQ(v string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldEQ(FieldRespHeaders, v))
+}
+
+// RespHeadersNEQ applies the NEQ predicate on the "resp_headers" field.
+func RespHeadersNEQ(v string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldNEQ(FieldRespHeaders, v))
+}
+
+// RespHeadersIn applies the In predicate on the "resp_headers" field.
+func RespHeadersIn(vs ...string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldIn(FieldRespHeaders, vs...))
+}
+
+// RespHeadersNotIn applies the NotIn predicate on the "resp_headers" field.
+func RespHeadersNotIn(vs ...string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldNotIn(FieldRespHeaders, vs...))
+}
+
+// RespHeadersGT applies the GT predicate on the "resp_headers" field.
+func RespHeadersGT(v string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldGT(FieldRespHeaders, v))
+}
+
+// RespHeadersGTE applies the GTE predicate on the "resp_headers" field.
+func RespHeadersGTE(v string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldGTE(FieldRespHeaders, v))
+}
+
+// RespHeadersLT applies the LT predicate on the "resp_headers" field.
+func RespHeadersLT(v string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldLT(FieldRespHeaders, v))
+}
+
+// RespHeadersLTE applies the LTE predicate on the "resp_headers" field.
+func RespHeadersLTE(v string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldLTE(FieldRespHeaders, v))
+}
+
+// RespHeadersContains applies the Contains predicate on the "resp_headers" field.
+func RespHeadersContains(v string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldContains(FieldRespHeaders, v))
+}
+
+// RespHeadersHasPrefix applies the HasPrefix predicate on the "resp_headers" field.
+func RespHeadersHasPrefix(v string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldHasPrefix(FieldRespHeaders, v))
+}
+
+// RespHeadersHasSuffix applies the HasSuffix predicate on the "resp_headers" field.
+func RespHeadersHasSuffix(v string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldHasSuffix(FieldRespHeaders, v))
+}
+
+// RespHeadersIsNil applies the IsNil predicate on the "resp_headers" field.
+func RespHeadersIsNil() predicate.Apireq {
+	return predicate.Apireq(sql.FieldIsNull(FieldRespHeaders))
+}
+
+// RespHeadersNotNil applies the NotNil predicate on the "resp_headers" field.
+func RespHeadersNotNil() predicate.Apireq {
+	return predicate.Apireq(sql.FieldNotNull(FieldRespHeaders))
+}
+
+// RespHeadersEqualFold applies the EqualFold predicate on the "resp_headers" field.
+func RespHeadersEqualFold(v string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldEqualFold(FieldRespHeaders, v))
+}
+
+// RespHeadersContainsFold applies the ContainsFold predicate on the "resp_headers" field.
+func RespHeadersContainsFold(v string) predicate.Apireq {
+	return predicate.Apireq(sql.FieldContainsFold(FieldRespHeaders, v))
+}
+
+// RespMetadataIsNil applies the IsNil predicate on the "resp_metadata" field.
+func RespMetadataIsNil() predicate.Apireq {
+	return predicate.Apireq(sql.FieldIsNull(FieldRespMetadata))
+}
+
+// RespMetadataNotNil applies the NotNil predicate on the "resp_metadata" field.
+func RespMetadataNotNil() predicate.Apireq {
+	return predicate.Apireq(sql.FieldNotNull(FieldRespMetadata))
 }
 
 // CreatedAtEQ applies the EQ predicate on the "created_at" field.

@@ -27,26 +27,112 @@ func (ac *ApireqCreate) SetReqTime(t time.Time) *ApireqCreate {
 }
 
 // SetReqParam sets the "req_param" field.
-func (ac *ApireqCreate) SetReqParam(m map[string]interface{}) *ApireqCreate {
-	ac.mutation.SetReqParam(m)
+func (ac *ApireqCreate) SetReqParam(s string) *ApireqCreate {
+	ac.mutation.SetReqParam(s)
+	return ac
+}
+
+// SetNillableReqParam sets the "req_param" field if the given value is not nil.
+func (ac *ApireqCreate) SetNillableReqParam(s *string) *ApireqCreate {
+	if s != nil {
+		ac.SetReqParam(*s)
+	}
 	return ac
 }
 
 // SetReqBody sets the "req_body" field.
-func (ac *ApireqCreate) SetReqBody(m map[string]interface{}) *ApireqCreate {
-	ac.mutation.SetReqBody(m)
+func (ac *ApireqCreate) SetReqBody(s string) *ApireqCreate {
+	ac.mutation.SetReqBody(s)
+	return ac
+}
+
+// SetNillableReqBody sets the "req_body" field if the given value is not nil.
+func (ac *ApireqCreate) SetNillableReqBody(s *string) *ApireqCreate {
+	if s != nil {
+		ac.SetReqBody(*s)
+	}
 	return ac
 }
 
 // SetReqHeaders sets the "req_headers" field.
-func (ac *ApireqCreate) SetReqHeaders(m map[string]interface{}) *ApireqCreate {
-	ac.mutation.SetReqHeaders(m)
+func (ac *ApireqCreate) SetReqHeaders(s string) *ApireqCreate {
+	ac.mutation.SetReqHeaders(s)
+	return ac
+}
+
+// SetNillableReqHeaders sets the "req_headers" field if the given value is not nil.
+func (ac *ApireqCreate) SetNillableReqHeaders(s *string) *ApireqCreate {
+	if s != nil {
+		ac.SetReqHeaders(*s)
+	}
 	return ac
 }
 
 // SetReqMetadata sets the "req_metadata" field.
-func (ac *ApireqCreate) SetReqMetadata(m map[string]interface{}) *ApireqCreate {
-	ac.mutation.SetReqMetadata(m)
+func (ac *ApireqCreate) SetReqMetadata(s string) *ApireqCreate {
+	ac.mutation.SetReqMetadata(s)
+	return ac
+}
+
+// SetNillableReqMetadata sets the "req_metadata" field if the given value is not nil.
+func (ac *ApireqCreate) SetNillableReqMetadata(s *string) *ApireqCreate {
+	if s != nil {
+		ac.SetReqMetadata(*s)
+	}
+	return ac
+}
+
+// SetRespTime sets the "resp_time" field.
+func (ac *ApireqCreate) SetRespTime(t time.Time) *ApireqCreate {
+	ac.mutation.SetRespTime(t)
+	return ac
+}
+
+// SetRespStatus sets the "resp_status" field.
+func (ac *ApireqCreate) SetRespStatus(i int) *ApireqCreate {
+	ac.mutation.SetRespStatus(i)
+	return ac
+}
+
+// SetNillableRespStatus sets the "resp_status" field if the given value is not nil.
+func (ac *ApireqCreate) SetNillableRespStatus(i *int) *ApireqCreate {
+	if i != nil {
+		ac.SetRespStatus(*i)
+	}
+	return ac
+}
+
+// SetRespBody sets the "resp_body" field.
+func (ac *ApireqCreate) SetRespBody(s string) *ApireqCreate {
+	ac.mutation.SetRespBody(s)
+	return ac
+}
+
+// SetNillableRespBody sets the "resp_body" field if the given value is not nil.
+func (ac *ApireqCreate) SetNillableRespBody(s *string) *ApireqCreate {
+	if s != nil {
+		ac.SetRespBody(*s)
+	}
+	return ac
+}
+
+// SetRespHeaders sets the "resp_headers" field.
+func (ac *ApireqCreate) SetRespHeaders(s string) *ApireqCreate {
+	ac.mutation.SetRespHeaders(s)
+	return ac
+}
+
+// SetNillableRespHeaders sets the "resp_headers" field if the given value is not nil.
+func (ac *ApireqCreate) SetNillableRespHeaders(s *string) *ApireqCreate {
+	if s != nil {
+		ac.SetRespHeaders(*s)
+	}
+	return ac
+}
+
+// SetRespMetadata sets the "resp_metadata" field.
+func (ac *ApireqCreate) SetRespMetadata(m map[string]interface{}) *ApireqCreate {
+	ac.mutation.SetRespMetadata(m)
 	return ac
 }
 
@@ -119,17 +205,8 @@ func (ac *ApireqCreate) check() error {
 	if _, ok := ac.mutation.ReqTime(); !ok {
 		return &ValidationError{Name: "req_time", err: errors.New(`ent: missing required field "Apireq.req_time"`)}
 	}
-	if _, ok := ac.mutation.ReqParam(); !ok {
-		return &ValidationError{Name: "req_param", err: errors.New(`ent: missing required field "Apireq.req_param"`)}
-	}
-	if _, ok := ac.mutation.ReqBody(); !ok {
-		return &ValidationError{Name: "req_body", err: errors.New(`ent: missing required field "Apireq.req_body"`)}
-	}
-	if _, ok := ac.mutation.ReqHeaders(); !ok {
-		return &ValidationError{Name: "req_headers", err: errors.New(`ent: missing required field "Apireq.req_headers"`)}
-	}
-	if _, ok := ac.mutation.ReqMetadata(); !ok {
-		return &ValidationError{Name: "req_metadata", err: errors.New(`ent: missing required field "Apireq.req_metadata"`)}
+	if _, ok := ac.mutation.RespTime(); !ok {
+		return &ValidationError{Name: "resp_time", err: errors.New(`ent: missing required field "Apireq.resp_time"`)}
 	}
 	if _, ok := ac.mutation.CreatedAt(); !ok {
 		return &ValidationError{Name: "created_at", err: errors.New(`ent: missing required field "Apireq.created_at"`)}
@@ -174,20 +251,40 @@ func (ac *ApireqCreate) createSpec() (*Apireq, *sqlgraph.CreateSpec) {
 		_node.ReqTime = value
 	}
 	if value, ok := ac.mutation.ReqParam(); ok {
-		_spec.SetField(apireq.FieldReqParam, field.TypeJSON, value)
+		_spec.SetField(apireq.FieldReqParam, field.TypeString, value)
 		_node.ReqParam = value
 	}
 	if value, ok := ac.mutation.ReqBody(); ok {
-		_spec.SetField(apireq.FieldReqBody, field.TypeJSON, value)
+		_spec.SetField(apireq.FieldReqBody, field.TypeString, value)
 		_node.ReqBody = value
 	}
 	if value, ok := ac.mutation.ReqHeaders(); ok {
-		_spec.SetField(apireq.FieldReqHeaders, field.TypeJSON, value)
+		_spec.SetField(apireq.FieldReqHeaders, field.TypeString, value)
 		_node.ReqHeaders = value
 	}
 	if value, ok := ac.mutation.ReqMetadata(); ok {
-		_spec.SetField(apireq.FieldReqMetadata, field.TypeJSON, value)
+		_spec.SetField(apireq.FieldReqMetadata, field.TypeString, value)
 		_node.ReqMetadata = value
+	}
+	if value, ok := ac.mutation.RespTime(); ok {
+		_spec.SetField(apireq.FieldRespTime, field.TypeTime, value)
+		_node.RespTime = value
+	}
+	if value, ok := ac.mutation.RespStatus(); ok {
+		_spec.SetField(apireq.FieldRespStatus, field.TypeInt, value)
+		_node.RespStatus = value
+	}
+	if value, ok := ac.mutation.RespBody(); ok {
+		_spec.SetField(apireq.FieldRespBody, field.TypeString, value)
+		_node.RespBody = value
+	}
+	if value, ok := ac.mutation.RespHeaders(); ok {
+		_spec.SetField(apireq.FieldRespHeaders, field.TypeString, value)
+		_node.RespHeaders = value
+	}
+	if value, ok := ac.mutation.RespMetadata(); ok {
+		_spec.SetField(apireq.FieldRespMetadata, field.TypeJSON, value)
+		_node.RespMetadata = value
 	}
 	if value, ok := ac.mutation.CreatedAt(); ok {
 		_spec.SetField(apireq.FieldCreatedAt, field.TypeTime, value)

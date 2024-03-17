@@ -6,15 +6,29 @@ import (
 	"golang-intern/assignment-2/db"
 	"golang-intern/assignment-2/ent"
 	"golang-intern/assignment-2/ent/earthquake"
+	"golang-intern/assignment-2/ent/location"
 	"golang-intern/assignment-2/model"
+	"golang-intern/assignment-2/util"
 	"time"
 
 	"github.com/gofiber/fiber/v2"
 )
 
-// Get
+// GetAllEarthquake example
+//
+//	@Summary		Fetch data from
+//	@Description	get string by ID
+//	@ID				get-string-by-int
+//	@Accept			json
+//	@Produce		json
+//	@Param			some_id	path		int				true	"Some ID"
+//	@Param			some_id	body		web.Pet			true	"Some ID"
+//	@Success		200		{string}	string			"ok"
+//	@Failure		400		{object}	web.APIError	"We need ID!!"
+//	@Failure		404		{object}	web.APIError	"Can not find ID"
+//	@Router			/testapi/get-string-by-int/{some_id} [get]
 func GetAllEarthquake(c *fiber.Ctx) error {
-	eqs, err := querryAllEathquake(ctx)
+	eqs, err := querryAllEathquake(util.Ctx)
 
 	if err != nil {
 		return err
@@ -36,7 +50,7 @@ func GetAllEarthquake(c *fiber.Ctx) error {
 }
 
 func GetEarthquakeByLimitOffset(c *fiber.Ctx, limit int, offset int) error {
-	eqs, err := querryLimitOffsetEarthquake(ctx, limit, offset)
+	eqs, err := querryLimitOffsetEarthquake(util.Ctx, limit, offset)
 
 	if err != nil {
 		return err
@@ -58,7 +72,29 @@ func GetEarthquakeByLimitOffset(c *fiber.Ctx, limit int, offset int) error {
 }
 
 func GetEarthquakeFilteredByID(c *fiber.Ctx, id int) error {
-	eqs, err := querryEarthquakeFilteredByID(ctx, id)
+	eqs, err := querryEarthquakeFilteredByID(util.Ctx, id)
+
+	if err != nil {
+		return err
+	}
+
+	eqs_model, err := convertEarthquakeToBytes(eqs)
+
+	if err != nil {
+		return err
+	}
+
+	result, err := json.Marshal(eqs_model)
+
+	if err != nil {
+		return err
+	}
+
+	return c.Send(result)
+}
+
+func GetEarthquakeFilteredByLocation(c *fiber.Ctx, limit int, offset int, place string) error {
+	eqs, err := querryEarthquakeFilteredByLocation(util.Ctx, limit, offset, place)
 
 	if err != nil {
 		return err
@@ -94,6 +130,20 @@ func querryLimitOffsetEarthquake(c context.Context, limit int, offset int) ([]*e
 	eqs, err := db.Client.Earthquake.Query().
 		Limit(limit).
 		Offset(offset).
+		All(c)
+
+	if err != nil {
+		return nil, err
+	}
+
+	return eqs, nil
+}
+
+func querryEarthquakeFilteredByLocation(c context.Context, limit int, offset int, place string) ([]*ent.Earthquake, error) {
+	eqs, err := db.Client.Location.Query().
+		Where(location.Place(place)).
+		QueryGeometries().
+		QueryEarthquakes().
 		All(c)
 
 	if err != nil {
