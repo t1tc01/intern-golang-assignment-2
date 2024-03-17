@@ -1,5 +1,7 @@
 # Golang Intern Assignment 2
 
+
+
 ## Install migration 
 ```
     curl -s https://packagecloud.io/install/repositories/golang-migrate/migrate/script.deb.sh | sudo bash
@@ -68,7 +70,8 @@ Example:
 ```
 localhost:3000/getrequestbyweek/2
 ```
-
+## Database Schema
+![This is database design of this repo](/assets/images/earthquake.png)
 
 
 
